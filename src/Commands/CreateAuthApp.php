@@ -34,7 +34,9 @@ class CreateAuthApp extends Command
         $authApp = DB::table(config('auth_server.table'))->where('app_id', $appId)->first();
 
         $this->table(['id', config('auth_server.foreign_id'), 'name', 'app_id', 'secret'], [
-            $authApp->id, $authApp->{config('auth_server.foreign_id')}, $authApp->name, $authApp->app_id, $authApp->secret
+            [
+                $authApp->id, $authApp->{config('auth_server.foreign_id')}, $authApp->name, $authApp->app_id, $authApp->secret
+            ]
         ]);
     }
 
