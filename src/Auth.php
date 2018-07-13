@@ -13,12 +13,12 @@ class Auth
 
     public static function beforeMiddleware($request)
     {
-        return (static::$beforeMiddleware)($request) ?: false;
+        return static::$beforeMiddleware ? (static::$beforeMiddleware)($request) : false;
     }
 
     public static function afterMiddleware($request, $authApp)
     {
-        return (static::$afterMiddleware)($request, $authApp) ?: $request;
+        return static::$afterMiddleware ? (static::$afterMiddleware)($request, $authApp) : $request;
     }
 
 }
