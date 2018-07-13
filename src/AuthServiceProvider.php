@@ -13,10 +13,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->publishes([__DIR__ . '/database/' => database_path()]);
         $this->publishes([__DIR__ . '/config/' => config_path()]);
-    }
-
-    public function boot()
-    {
-        $this->commands([CreateAuthApp::class]);
+        $this->commands(CreateAuthApp::class);
     }
 }
