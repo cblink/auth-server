@@ -12,17 +12,17 @@ class CreateAuthApp extends Command
 
     protected $signature = 'auth:server:create';
 
-    public function handler()
+    public function handle()
     {
         $name = $this->ask('the auth app name ?');
 
-        $foreignId = $this->ask('the foreign id ?');
+        $foreignId = $this->ask('the '.config('auth_server.foreign_id').' ?');
 
         $appId = $this->ask('the app id ?', 'create by random');
 
         $appId = $appId === 'create by random' ? strtolower(str_random(16)) : $appId;
 
-        DB::table(config('auth_server'))->insert([
+        DB::table(config('auth_server.table'))->insert([
             config('auth_server.foreign_id') => $foreignId,
             'name' => $name,
             'app_id' => $appId,
