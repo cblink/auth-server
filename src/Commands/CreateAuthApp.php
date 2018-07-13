@@ -30,7 +30,12 @@ class CreateAuthApp extends Command
         ]);
 
         $this->info('create auth app successfully !');
-        $this->table(['id', config('auth_server.foreign_id'), 'name', 'app_id', 'secret'], DB::table(config('auth_server.table'))->where('app_id', $appId)->first()->toArray());
+
+        $authApp = DB::table(config('auth_server.table'))->where('app_id', $appId)->first();
+
+        $this->table(['id', config('auth_server.foreign_id'), 'name', 'app_id', 'secret'], [
+            $authApp->id, $authApp->{config('auth_server.foreign_id')}, $authApp->name, $authApp->app_id, $authApp->secret
+        ]);
     }
 
 }
