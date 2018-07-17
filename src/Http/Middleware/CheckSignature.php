@@ -34,13 +34,13 @@ class CheckSignature
 
         throw_if(!$authApp, AuthServerException::class, 'invalid app_id');
 
-        $payload['secret'] = $authApp['secret'];
+        $payload['secret'] = $authApp->secret;
 
         ksort($payload);
 
         throw_if(strtolower(md5(http_build_query($payload))) !== $sign, AuthServerException::class, 'invalid sign');
 
-        $request->attributes['auth_app'] = $authApp;
+        $request->attributes->set('auth_app', $authApp);
 
         $request = Auth::afterMiddleware($request, $authApp);
 

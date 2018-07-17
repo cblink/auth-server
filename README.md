@@ -21,3 +21,12 @@ you can modify the `auth_server.php` to change the table name and foreign id
 ### create a auth app
 
 `php artisan auth:server:create`
+
+### add middleware in kernel.php
+
+```php
+protected $routeMiddleware = [
+// ...
+    'open' => \Cblink\AuthServer\Http\Middleware\CheckSignature::class,
+]
+```
