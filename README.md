@@ -2,7 +2,7 @@
 
 ## install
 
-`composer require cblink/auth-server --dev -vvv`
+`composer require cblink/auth-server:dev-master -vvv`
 
 ## configure
 
